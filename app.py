@@ -74,7 +74,7 @@ def clean_whatsapp_text(text):
 
 def send_whatsapp(to_number, user_name, summary):
     if not twilio_client or not TWILIO_WHATSAPP_FROM or not TWILIO_CONTENT_SID:
-        return False, "Twilio WhatsApp credentials not configured in `.streamlit/secrets.toml`."
+        return False, "Twilio WhatsApp credentials not configured."
     # Content template expects {{1}} = name, {{2}} = summary.
     try:
         content_variables = json.dumps(
@@ -130,9 +130,9 @@ with button_col:
     if st.button("📤 Send to WhatsApp", disabled=send_disabled, use_container_width=True):
         if not has_twilio:
             st.warning(
-                "Twilio WhatsApp is not configured in `.streamlit/secrets.toml`. "
+                "Twilio WhatsApp is not configured. "
                 "Please add `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_WHATSAPP_FROM`, "
-                "and `TWILIO_CONTENT_SID` to enable WhatsApp sending."
+                "and `TWILIO_CONTENT_SID` to your secrets to enable WhatsApp sending."
             )
         else:
             with st.spinner("Summarizing your consultation..."):
