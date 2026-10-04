@@ -18,7 +18,11 @@ TWILIO_WHATSAPP_FROM = st.secrets.get("TWILIO_WHATSAPP_FROM", "")
 TWILIO_CONTENT_SID = st.secrets.get("TWILIO_CONTENT_SID", "")
 
 if not GEMINI_API_KEY:
-    st.error("Missing `GEMINI_API_KEY` in `.streamlit/secrets.toml`. Please add it to get started.")
+    st.error(
+        "Missing `GEMINI_API_KEY`!\n\n"
+        "- **If deploying on Streamlit Cloud:** Open **App Settings → Secrets** in your Streamlit Cloud dashboard and paste your secrets.\n"
+        "- **If running locally:** Add your key to `.streamlit/secrets.toml`."
+    )
     st.stop()
 
 
